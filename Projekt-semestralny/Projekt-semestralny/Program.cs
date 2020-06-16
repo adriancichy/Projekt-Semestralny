@@ -54,67 +54,80 @@ namespace ProjektSemestralnyC
                 if (odp == "tak")
                 {
                     WartoscKartyGracza += random.Next(1, 12); //Losowanie kolejnej karty z przedziału 1-11
+                    
+                    if (WartoscKartyGracza > 21)
+                    {
+                        Console.WriteLine("Wartość twoich kart to więcej niż 21.");
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("BUST");
+                        Console.ResetColor();
+                        break;
+                    }
+
+                    else
+                    {
+                        continue;
+                    }
                 }
 
                 else if (odp == "nie")
                 {
-
+                    break;
                 }
 
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Zła odpowiedz.");
+                    Console.ResetColor();
                     continue;
                 }
             }
 
+            //Ruchy Krupiera
 
-            switch (WartoscKartyGracza)
+            Console.WriteLine("Krupier losuje karty...");
+            
+            if(WartoscKartyGracza <= 21) //Wynik gracza to 21 lub mniej
             {
-                case 1:
-                case 11:
-                    Console.WriteLine("As");
-                    break;
+                //Jeżeli wartość kart krupiera to mniej niż 21 i mniej niż wartosc kart gracza, krupier kontynuuje losowanie kart.
+                while (WartoscKartyKrupiera < 21 && WartoscKartyKrupiera < WartoscKartyGracza) 
+                {
+                    WartoscKartyKrupiera += random.Next(1, 12);
+                }
 
-                case 2:
-                    Console.WriteLine("Karta o wartości 2.");
-                    break;
+                
+                if (WartoscKartyGracza == WartoscKartyKrupiera)
+                {
+                    Console.WriteLine("Wartość kart gracz i krupiera jest równa.");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine("REMIS");
+                    Console.ResetColor();
+                }
 
-                case 3:
-                    Console.WriteLine("Karta o wartości 3.");
-                    break;
+                else if (WartoscKartyGracza < WartoscKartyKrupiera && WartoscKartyKrupiera <= 21)
+                {
+                    Console.WriteLine("Wartość kart krupiera to: " + WartoscKartyKrupiera + ".");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Przegrałeś");
+                    Console.ResetColor();
+                }
 
-                case 4:
-                    Console.WriteLine("Karta o wartości 4.");
-                    break;
+                else if (WartoscKartyKrupiera > 21)
+                {
+                    Console.WriteLine("Wartośc kart krupiera to: " + WartoscKartyKrupiera + ".");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Wygrałeś!");
+                    Console.ResetColor();
+                }
 
-                case 5:
-                    Console.WriteLine("Karta o wartości 5.");
-                    break;
-
-                case 6:
-                    Console.WriteLine("Karta o wartości 6.");
-                    break;
-
-                case 7:
-                    Console.WriteLine("Karta o wartości 7.");
-                    break;
-
-                case 8:
-                    Console.WriteLine("Karta o wartości 8.");
-                    break;
-
-                case 9:
-                    Console.WriteLine("Karta o wartości 9.");
-                    break;
-
-                case 10:
-                    Console.WriteLine("10 | Król | Królowa | Jupek");
-                    break;
-
-                default:
-                    Console.WriteLine("Joker");
-                    break;
+                else if (WartoscKartyKrupiera == 21)
+                {
+                    Console.WriteLine("Wartość graczy krupiera to: " + WartoscKartyKrupiera + ".");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Przegrałeś");
+                    Console.ResetColor();
+                }
             }
 
             Console.ReadLine();
