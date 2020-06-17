@@ -23,7 +23,29 @@ public class Karty
 
         int LosowanieKarty = random.Next(0, Talia.AllCards.Count - 1);
         WartoscKartyGracza += int.Parse(Talia.AllCards[LosowanieKarty].Split()[2]);
+
+        switch (Talia.AllCards[LosowanieKarty].Split()[1])
+        {
+            case "Serce":
+                Console.ForegroundColor = ConsoleColor.Red;
+
+                break;
+            case "Dzwonek":
+                Console.ForegroundColor = ConsoleColor.Red;
+
+                break;
+            case "Wino":
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+
+                break;
+            case "Żołądź":
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+
+                break;
+        }
+
         Console.WriteLine("Wylosowałeś: " + Talia.AllCards[LosowanieKarty].Split()[0] + " " + Talia.AllCards[LosowanieKarty].Split()[1]);
+        Console.ResetColor();
         Talia.AllCards.RemoveAt(LosowanieKarty);
 
 
@@ -37,6 +59,7 @@ public class Karty
 
         LosowanieKarty = random.Next(0, Talia.AllCards.Count - 1);
         WartoscKartyKrupiera += int.Parse(Talia.AllCards[LosowanieKarty].Split()[2]);
+
         Talia.AllCards.RemoveAt(LosowanieKarty);
 
 
@@ -64,11 +87,33 @@ public class Karty
 
             if (odp == "tak")
             {
+
                 Console.WriteLine("---------------------------------------");
+
                 LosowanieKarty = random.Next(0, Talia.AllCards.Count - 1);
                 WartoscKartyGracza += int.Parse(Talia.AllCards[LosowanieKarty].Split()[2]);
+                switch (Talia.AllCards[LosowanieKarty].Split()[1])
+                {
+                    case "Serce":
+                        Console.ForegroundColor = ConsoleColor.Red;
+
+                        break;
+                    case "Dzwonek":
+                        Console.ForegroundColor = ConsoleColor.Red;
+
+                        break;
+                    case "Wino":
+                        Console.ForegroundColor = ConsoleColor.DarkGray;
+
+                        break;
+                    case "Żołądź":
+                        Console.ForegroundColor = ConsoleColor.DarkGray;
+
+                        break;
+                }
                 Console.WriteLine("Pociągnięta karta to: " + Talia.AllCards[LosowanieKarty].Split()[0] + " " + Talia.AllCards[LosowanieKarty].Split()[1]);
-                Talia.AllCards.RemoveAt(LosowanieKarty); //Losowanie kolejnej karty z przedziału 1-11
+                Talia.AllCards.RemoveAt(LosowanieKarty);
+                Console.ResetColor();
 
                 if (WartoscKartyGracza > 21)
                 {
@@ -76,6 +121,7 @@ public class Karty
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("BUST");
                     Console.ResetColor();
+                    Console.WriteLine("Naciśnij enter aby zagrać ponownie.");
                     break;
                 }
 
@@ -115,7 +161,8 @@ public class Karty
 
                 LosowanieKarty = random.Next(0, Talia.AllCards.Count - 1);
                 WartoscKartyKrupiera += int.Parse(Talia.AllCards[LosowanieKarty].Split()[2]);
-                Talia.AllCards.RemoveAt(LosowanieKarty);
+                
+
 
             }
 
@@ -126,14 +173,17 @@ public class Karty
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("REMIS");
                 Console.ResetColor();
+                Console.WriteLine("Naciśnij enter aby zagrać ponownie.");
             }
 
             else if (WartoscKartyGracza < WartoscKartyKrupiera && WartoscKartyKrupiera <= 21)
             {
+
                 Console.WriteLine("Wartość kart krupiera to: " + WartoscKartyKrupiera + ".");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Przegrałeś");
                 Console.ResetColor();
+                Console.WriteLine("Naciśnij enter aby zagrać ponownie.");
             }
 
             else if (WartoscKartyKrupiera > 21)
@@ -142,6 +192,7 @@ public class Karty
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Wygrałeś!");
                 Console.ResetColor();
+                Console.WriteLine("Naciśnij enter aby zagrać ponownie.");
             }
 
             else if (WartoscKartyKrupiera == 21)
@@ -150,10 +201,12 @@ public class Karty
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Przegrałeś");
                 Console.ResetColor();
+                Console.WriteLine("Naciśnij enter aby zagrać ponownie.");
             }
         }
 
         Console.ReadLine();
+
 
 
 
